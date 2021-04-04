@@ -1,0 +1,16 @@
+version: '3'
+services:
+    
+    roscore:
+        image: ros:melodic-ros-core
+        container_name: roscore
+        command: roscore
+        network_mode: "host"
+
+    ndt:
+        build: .
+        image: ndt:melodic
+        container_name: ndt
+        command: /bin/bash -c "sleep 10; source /home/ndt/devel/setup.bash; roslaunch lidar_localizer ndt_matching.launch"
+        network_mode: "host"
+        # restart: always
